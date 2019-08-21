@@ -37,7 +37,9 @@
 -(void) dealloc
 {
 	[self CloseZipFile2];
+#if !__has_feature(objc_arc)
 	[super dealloc];
+#endif
 }
 
 -(BOOL) CreateZipFile2:(NSString*) zipFile
@@ -267,8 +269,10 @@
 									 initWithCalendarIdentifier:NSGregorianCalendar];
 			
 			orgDate = [gregorian dateFromComponents:dc] ;
+#if !__has_feature(objc_arc)
 			[dc release];
 			[gregorian release];
+#endif
 			//}}
 			
 			
@@ -325,9 +329,11 @@
 	NSCalendar *gregorian = [[NSCalendar alloc]
 							 initWithCalendarIdentifier:NSGregorianCalendar];
 	NSDate *date = [gregorian dateFromComponents:comps];
-	
+
+#if !__has_feature(objc_arc)
 	[comps release];
 	[gregorian release];
+#endif
 	return date;
 }
 

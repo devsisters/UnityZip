@@ -29,10 +29,14 @@ extern "C"{
         }
         
         [zip CloseZipFile2];
+#if !__has_feature(objc_arc)
         [zip release];
+#endif
         
         [list removeAllObjects];
+#if !__has_feature(objc_arc)
         [list release];
+#endif
         list = nil;
     }
     
@@ -58,6 +62,9 @@ extern "C"{
             [zip UnzipCloseFile];
         }
         [zip CloseZipFile2];
+
+#if !__has_feature(objc_arc)
         [zip release];
+#endif
     }
 }
